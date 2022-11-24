@@ -1,15 +1,25 @@
-import { RenderLeafProps } from "slate-react"
+import { RenderLeafProps } from "slate-react";
 
-export function Leaf({
-  attributes = {
-    "data-slate-leaf": true
-  },
-  children = null,
-  leaf
-}: RenderLeafProps) {
-  return (
-    <span {...attributes} style={{ fontWeight: leaf.bold ? "bold" : "normal" }}>
-      {children}
-    </span>
-  )
+export function Leaf({ attributes, children, leaf }: RenderLeafProps) {
+	const properties = Object.keys(leaf);
+	let child = children;
+
+	properties.forEach((key) => {
+		switch (key) {
+			case "bold":
+				child = <b>{child}</b>;
+				break;
+			case "italic":
+				child = <i>{child}</i>;
+				break;
+			case "underline":
+				child = <u>{child}</u>;
+				break;
+			case "code":
+				child = <code>{child}</code>;
+				break;
+		}
+	});
+
+	return <span {...attributes}>{child}</span>;
 }
