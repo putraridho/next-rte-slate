@@ -1,5 +1,5 @@
 import { ctrlKeyEvent, CustomEditor } from "@helpers"
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { createEditor, Descendant } from "slate"
 import {
   Editable,
@@ -13,15 +13,40 @@ import { CodeElement } from "../CodeElement"
 import { DefaultElement } from "../DefaultElement"
 import { Leaf } from "../Leaf"
 
-const initialValue: Descendant[] = [
-  {
-    type: "paragraph",
-    children: [{ text: "A line of text in a paragraph." }]
+const initialValue = (function () {
+  if (typeof window !== "undefined") {
+    const content = window.localStorage.getItem("content")
+
+    if (content) {
+      return JSON.parse(content)
+    }
   }
-]
+
+  return [
+    {
+      type: "paragraph",
+      children: [{ text: "A line of text in a paragraph." }]
+    }
+  ]
+})()
 
 export function RichTextEditor(): React.ReactElement {
   const [editor] = useState(() => withReact(createEditor()))
+
+  const initialValue = useMemo(() => {
+    const content = window.localStorage.getItem("content")
+
+    if (content) {
+      return JSON.parse(content)
+    }
+
+    return [
+      {
+        type: "paragraph",
+        children: [{ text: "A line of text in a paragraph." }]
+      }
+    ]
+  }, [])
 
   const renderElement = useCallback((props: RenderElementProps) => {
     switch (props.element.type) {
@@ -38,7 +63,20 @@ export function RichTextEditor(): React.ReactElement {
   )
 
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate
+      editor={editor}
+      value={initialValue}
+      onChange={(value) => {
+        const isAstChange = editor.operations.some(
+          (op) => "set_selection" !== op.type
+        )
+
+        if (isAstChange) {
+          const content = JSON.stringify(value)
+          localStorage.setItem("content", content)
+        }
+      }}
+    >
       <div>
         <button
           onMouseDown={(event) => {
