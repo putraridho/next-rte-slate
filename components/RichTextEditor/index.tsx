@@ -1,6 +1,10 @@
-import React, { useState } from "react"
-import { BaseEditor, createEditor, Descendant } from "slate"
-import { Editable, ReactEditor, Slate, withReact } from "slate-react"
+import { ctrlKeyEvent } from "helper"
+import React, { useCallback, useState } from "react"
+import { createEditor, Descendant } from "slate"
+import { Editable, RenderElementProps, Slate, withReact } from "slate-react"
+
+import { CodeElement } from "../CodeElement"
+import { DefaultElement } from "../DefaultElement"
 
 const initialValue: Descendant[] = [
   {
@@ -12,34 +16,27 @@ const initialValue: Descendant[] = [
 export function RichTextEditor(): React.ReactElement {
   const [editor] = useState(() => withReact(createEditor()))
 
+  const renderElement = useCallback((props: RenderElementProps) => {
+    switch (props.element.type) {
+      case "code":
+        return <CodeElement {...props} />
+      default:
+        return <DefaultElement {...props} />
+    }
+  }, [])
+
   return (
     <Slate editor={editor} value={initialValue}>
       <Editable
+        renderElement={renderElement}
         onKeyDown={(event) => {
-          if (event.key === "&") {
-            // Prevent the ampersand character from being inserted.
-            event.preventDefault()
-            // Execute the `insertText` method when the event occurs.
-            editor.insertText("and")
-          }
+          ctrlKeyEvent({
+            key: "`",
+            event,
+            editor
+          })
         }}
       />
     </Slate>
   )
-}
-
-interface ICustomText {
-  text: string
-}
-interface ICustomElement {
-  type: "paragraph"
-  children: Array<ICustomText>
-}
-
-declare module "slate" {
-  interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: ICustomElement
-    Text: ICustomText
-  }
 }
