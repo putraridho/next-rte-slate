@@ -1,7 +1,9 @@
+import { RenderElementProps } from "slate-react"
+
 export function CodeElement({
-  attributes = {},
-  children = null
-}: ICodeElement): React.ReactElement {
+  attributes,
+  children
+}: RenderElementProps): React.ReactElement {
   return (
     <pre {...attributes}>
       <code>{children}</code>

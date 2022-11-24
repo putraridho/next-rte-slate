@@ -1,10 +1,17 @@
 import { ctrlKeyEvent } from "helper"
 import React, { useCallback, useState } from "react"
 import { createEditor, Descendant } from "slate"
-import { Editable, RenderElementProps, Slate, withReact } from "slate-react"
+import {
+  Editable,
+  RenderElementProps,
+  RenderLeafProps,
+  Slate,
+  withReact
+} from "slate-react"
 
 import { CodeElement } from "../CodeElement"
 import { DefaultElement } from "../DefaultElement"
+import { Leaf } from "../Leaf"
 
 const initialValue: Descendant[] = [
   {
@@ -25,13 +32,18 @@ export function RichTextEditor(): React.ReactElement {
     }
   }, [])
 
+  const renderLeaf = useCallback(
+    (props: RenderLeafProps) => <Leaf {...props} />,
+    []
+  )
+
   return (
     <Slate editor={editor} value={initialValue}>
       <Editable
         renderElement={renderElement}
+        renderLeaf={renderLeaf}
         onKeyDown={(event) => {
           ctrlKeyEvent({
-            key: "`",
             event,
             editor
           })

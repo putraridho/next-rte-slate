@@ -3,6 +3,7 @@ import { ReactEditor } from "slate-react"
 
 export interface ICustomText {
   text: string
+  bold?: boolean
 }
 
 export interface ICustomElement {
