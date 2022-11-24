@@ -1,4 +1,4 @@
-import { ctrlKeyEvent } from "helper"
+import { ctrlKeyEvent, CustomEditor } from "@helpers"
 import React, { useCallback, useState } from "react"
 import { createEditor, Descendant } from "slate"
 import {
@@ -39,6 +39,24 @@ export function RichTextEditor(): React.ReactElement {
 
   return (
     <Slate editor={editor} value={initialValue}>
+      <div>
+        <button
+          onMouseDown={(event) => {
+            event.preventDefault()
+            CustomEditor.toggleBoldMark(editor)
+          }}
+        >
+          Bold
+        </button>
+        <button
+          onMouseDown={(event) => {
+            event.preventDefault()
+            CustomEditor.toggleCodeBlock(editor)
+          }}
+        >
+          Code Block
+        </button>
+      </div>
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
