@@ -14,7 +14,16 @@ export function RichTextEditor(): React.ReactElement {
 
   return (
     <Slate editor={editor} value={initialValue}>
-      <Editable />
+      <Editable
+        onKeyDown={(event) => {
+          if (event.key === "&") {
+            // Prevent the ampersand character from being inserted.
+            event.preventDefault()
+            // Execute the `insertText` method when the event occurs.
+            editor.insertText("and")
+          }
+        }}
+      />
     </Slate>
   )
 }
