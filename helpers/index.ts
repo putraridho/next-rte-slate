@@ -1,6 +1,11 @@
 import { Editor, Element, Transforms } from "slate";
 
 import { ICustomElement, ICustomText } from "@components";
+import { LIST_ITEMS } from "./const";
+import { match } from "assert";
+import { THeading, TList, TParagraph } from "@components/type";
+
+export { LIST_ITEMS } from "./const";
 
 export function checkMark(
 	editor: Editor,
@@ -46,9 +51,27 @@ export function checkBlock(
 }
 
 export function toggleBlock(editor: Editor, type: ICustomElement["type"]) {
-	Transforms.setNodes(
-		editor,
-		{ type: checkBlock(editor, type) ? "paragraph" : type },
-		{ match: (n) => Editor.isBlock(editor, n) }
-	);
+	let isActive = checkBlock(editor, type);
+	let isList = LIST_ITEMS.includes(type);
+
+	Transforms.unwrapNodes(editor, {
+		match: (n) =>
+			!Editor.isEditor(n) &&
+			Element.isElement(n) &&
+			LIST_ITEMS.includes(n.type),
+		split: true,
+	});
+
+	let newProperties: Partial<Element>;
+
+	newProperties = {
+		type: isActive ? "paragraph" : isList ? "list-item" : type,
+	};
+
+	Transforms.setNodes(editor, newProperties);
+
+	if (!isActive && isList) {
+		const block = { type, children: [] };
+		Transforms.wrapNodes(editor, block);
+	}
 }

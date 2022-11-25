@@ -1,3 +1,4 @@
+import { HEADING_ITEMS, LIST_ITEMS } from "@helpers";
 import { BaseEditor } from "slate";
 import { ReactEditor } from "slate-react";
 
@@ -9,8 +10,12 @@ export interface ICustomText {
 	code?: boolean;
 }
 
+export type TParagraph = "paragraph";
+export type THeading = "h1" | "h2" | "h3";
+export type TList = "numbered-list" | "bulleted-list" | "list-item";
+
 export interface ICustomElement {
-	type: "paragraph" | "h1" | "h2" | "h3";
+	type: TParagraph | THeading | TList;
 	children: Array<ICustomText>;
 }
 

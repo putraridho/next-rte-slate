@@ -12,6 +12,12 @@ export function Element({
 			return <h2 {...attributes}>{children}</h2>;
 		case "h3":
 			return <h3 {...attributes}>{children}</h3>;
+		case "bulleted-list":
+			return <ul {...attributes}>{children}</ul>;
+		case "numbered-list":
+			return <ol {...attributes}>{children}</ol>;
+		case "list-item":
+			return <li {...attributes}>{children}</li>;
 		default:
 			return <p {...attributes}>{children}</p>;
 	}
