@@ -5,20 +5,29 @@ export function Element({
 	children,
 	element,
 }: RenderElementProps): React.ReactElement {
+	let props = {
+		...attributes,
+	} as typeof attributes & { style: { [key: string]: unknown } };
+
+	if (element.align) {
+		props.style = {};
+		props.style.textAlign = element.align;
+	}
+
 	switch (element.type) {
 		case "h1":
-			return <h1 {...attributes}>{children}</h1>;
+			return <h1 {...props}>{children}</h1>;
 		case "h2":
-			return <h2 {...attributes}>{children}</h2>;
+			return <h2 {...props}>{children}</h2>;
 		case "h3":
-			return <h3 {...attributes}>{children}</h3>;
+			return <h3 {...props}>{children}</h3>;
 		case "bulleted-list":
-			return <ul {...attributes}>{children}</ul>;
+			return <ul {...props}>{children}</ul>;
 		case "numbered-list":
-			return <ol {...attributes}>{children}</ol>;
+			return <ol {...props}>{children}</ol>;
 		case "list-item":
-			return <li {...attributes}>{children}</li>;
+			return <li {...props}>{children}</li>;
 		default:
-			return <p {...attributes}>{children}</p>;
+			return <p {...props}>{children}</p>;
 	}
 }

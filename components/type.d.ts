@@ -13,8 +13,10 @@ export interface ICustomText {
 export type TParagraph = "paragraph";
 export type THeading = "h1" | "h2" | "h3";
 export type TList = "numbered-list" | "bulleted-list" | "list-item";
+export type TAlign = "left" | "center" | "right" | "justify";
 
 export interface ICustomElement {
+	align?: TAlign;
 	type: TParagraph | THeading | TList;
 	children: Array<ICustomText>;
 }

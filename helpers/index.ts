@@ -2,10 +2,6 @@ import { Editor, Element, Transforms } from "slate";
 
 import { ICustomElement, ICustomText } from "@components";
 import { LIST_ITEMS } from "./const";
-import { match } from "assert";
-import { THeading, TList, TParagraph } from "@components/type";
-
-export { LIST_ITEMS } from "./const";
 
 export function checkMark(
 	editor: Editor,
@@ -75,3 +71,33 @@ export function toggleBlock(editor: Editor, type: ICustomElement["type"]) {
 		Transforms.wrapNodes(editor, block);
 	}
 }
+
+export function checkAlign(
+	editor: Editor,
+	align: ICustomElement["align"]
+): boolean {
+	if (editor.selection) {
+		const [match] = Editor.nodes(editor, {
+			at: Editor.unhangRange(editor, editor.selection),
+			match: (n) =>
+				!Editor.isEditor(n) && Element.isElement(n) && n.align === align,
+		});
+
+		return !!match;
+	}
+	return false;
+}
+
+export function toggleAlign(editor: Editor, align: ICustomElement["align"]) {
+	const isActive = checkAlign(editor, align);
+
+	let newProperties: Partial<Element>;
+
+	newProperties = {
+		align: isActive ? undefined : align,
+	};
+
+	Transforms.setNodes(editor, newProperties);
+}
+
+export * from "./const";

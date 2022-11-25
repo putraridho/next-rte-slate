@@ -8,4 +8,11 @@ export const RichTextEditor = dynamic(
 	}
 ) as React.FC<{}>;
 
-export type { ICustomElement, ICustomText } from "./type";
+export type {
+	ICustomElement,
+	ICustomText,
+	TAlign,
+	THeading,
+	TList,
+	TParagraph,
+} from "./type";
