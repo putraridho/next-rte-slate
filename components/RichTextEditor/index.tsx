@@ -1,6 +1,6 @@
 import { Toolbars } from "@components/Toolbars";
 import React, { useCallback, useMemo } from "react";
-import { createEditor } from "slate";
+import { createEditor, Descendant } from "slate";
 import {
 	Editable,
 	RenderElementProps,
@@ -12,23 +12,15 @@ import {
 import { Element } from "../Element";
 import { Leaf } from "../Leaf";
 
+let initialValue: Descendant[] = [
+	{
+		type: "paragraph",
+		children: [{ text: "" }],
+	},
+];
+
 export function RichTextEditor(): React.ReactElement {
 	const editor = useMemo(() => withReact(createEditor()), []);
-
-	const initialValue = useMemo(() => {
-		const content = window.localStorage.getItem("content");
-
-		if (content) {
-			return JSON.parse(content);
-		}
-
-		return [
-			{
-				type: "paragraph",
-				children: [{ text: "" }],
-			},
-		];
-	}, []);
 
 	const renderElement = useCallback(
 		(props: RenderElementProps) => <Element {...props} />,
@@ -48,6 +40,7 @@ export function RichTextEditor(): React.ReactElement {
 					renderElement={renderElement}
 					renderLeaf={renderLeaf}
 					className="p-4 min-h-[10rem] border rounded border-slate-600"
+					autoFocus
 				/>
 			</div>
 		</Slate>
