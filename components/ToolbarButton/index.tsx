@@ -6,10 +6,10 @@ interface IToolbarButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function ToolbarButton({ active, ...props }: IToolbarButton) {
 	let className = useMemo(() => {
-		let string = "border rounded border-slate-600 p-1.5";
+		let string = "hover:bg-slate-200 active:bg-slate-300 rounded p-1.5 duration-200 ease-out";
 
 		if (active) {
-			string += " text-white bg-slate-600";
+			string += " text-slate-600 bg-slate-300 hover:bg-slate-300 ease-in";
 		}
 
 		return string;

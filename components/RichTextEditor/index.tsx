@@ -38,7 +38,7 @@ export function RichTextEditor(): React.ReactElement {
 			<Editable
 				renderElement={renderElement}
 				renderLeaf={renderLeaf}
-				className="p-4 min-h-[10rem] border border-t-0 border-slate-600"
+				className="p-4 min-h-[10rem] border border-t-0 rounded-b border-slate-200"
 				autoFocus
 				onKeyDown={(e) => {
 					if (e.ctrlKey) {

@@ -21,7 +21,7 @@ export function Toolbars() {
 	const editor = useSlate();
 
 	return (
-		<div className="flex flex-wrap border border-slate-600 px-4 py-4 gap-4 bg-neutral-100">
+		<div className="flex flex-wrap border border-slate-300 rounded-t px-4 py-4 gap-4 bg-slate-100">
 			<div className="flex gap-2">
 				{toggle_menu.map(({ format, title, Icon }) => (
 					<ToolbarButton

@@ -12,7 +12,9 @@ export function FontColor() {
 			<div className="relative">
 				<label htmlFor="font-color" style={{ color: color || "#000000" }}>
 					<div
-						className="border rounded border-slate-600 p-1.5"
+						role="button"
+						tabIndex={0}
+						className="hover:bg-slate-200 rounded p-1.5 duration-200 ease-out"
 						title={"Text color: " + color}
 					>
 						<RiFontColor />
