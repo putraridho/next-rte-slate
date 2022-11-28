@@ -16,6 +16,12 @@ export function serialize(node: Descendant): string {
 		if (node.code) {
 			string = `<code>${string}</code>`;
 		}
+		if (node.superscript) {
+			string = `<sup>${string}</sup>`;
+		}
+		if (node.subscript) {
+			string = `<sub>${string}</sub>`;
+		}
 		if (node.color) {
 			string = `<span style="color: ${node.color}">${string}</span>`;
 		}

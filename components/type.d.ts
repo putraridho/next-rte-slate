@@ -9,6 +9,8 @@ export interface ICustomText {
 	underline?: boolean;
 	code?: boolean;
 	color?: string;
+	superscript?: boolean;
+	subscript?: boolean;
 }
 
 export type TParagraph = "paragraph";

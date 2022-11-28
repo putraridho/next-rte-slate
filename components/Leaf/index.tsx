@@ -26,6 +26,11 @@ export function Leaf({ attributes, children, leaf }: RenderLeafProps) {
 				break;
 			case "code":
 				child = <code>{child}</code>;
+			case "superscript":
+				child = <sup>{child}</sup>;
+				break;
+			case "subscript":
+				child = <sub>{child}</sub>;
 				break;
 		}
 	});

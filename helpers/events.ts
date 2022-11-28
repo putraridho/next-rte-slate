@@ -23,6 +23,11 @@ export function toggleMark(
 	if (checkMark(editor, type)) {
 		editor.removeMark(type);
 	} else {
+		if (type === "subscript") {
+			editor.removeMark("superscript");
+		} else if (type === "superscript") {
+			editor.removeMark("subscript");
+		}
 		editor.addMark(type, true);
 	}
 }

@@ -15,6 +15,8 @@ import {
 	RiAlignJustify,
 	RiListOrdered,
 	RiListUnordered,
+	RiSuperscript,
+	RiSubscript,
 } from "react-icons/ri";
 
 export const LIST_ITEMS = ["numbered-list", "bulleted-list"];
@@ -28,6 +30,8 @@ export const toggle_menu: Array<{
 	{ format: "italic", title: "Italic", Icon: RiItalic },
 	{ format: "underline", title: "Underline", Icon: RiUnderline },
 	{ format: "code", title: "Code", Icon: RiCodeFill },
+	{ format: "superscript", title: "Superscript", Icon: RiSuperscript },
+	{ format: "subscript", title: "Subscript", Icon: RiSubscript },
 ];
 
 export const heading_menu: Array<{

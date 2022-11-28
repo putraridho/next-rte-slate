@@ -38,13 +38,7 @@ export function Toolbars() {
 				))}
 			</div>
 			<div className="border-r border-slate-300" />
-			<HeadingSelect>
-				{heading_menu.map(({ format, title }) => (
-					<option key={format} value={format}>
-						{title}
-					</option>
-				))}
-			</HeadingSelect>
+			<HeadingSelect />
 			<div className="border-r border-slate-300" />
 			<div className="flex items-center">
 				<FontColor />
