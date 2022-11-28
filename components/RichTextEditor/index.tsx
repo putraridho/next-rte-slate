@@ -34,18 +34,20 @@ export function RichTextEditor(): React.ReactElement {
 
 	return (
 		<Slate editor={editor} value={initialValue}>
-			<Toolbars />
-			<Editable
-				renderElement={renderElement}
-				renderLeaf={renderLeaf}
-				className="p-4 min-h-[10rem] border border-t-0 rounded-b border-slate-200"
-				autoFocus
-				onKeyDown={(e) => {
-					if (e.ctrlKey) {
-						console.log(true);
-					}
-				}}
-			/>
+			<div className="relative">
+				<Toolbars />
+				<Editable
+					renderElement={renderElement}
+					renderLeaf={renderLeaf}
+					className="p-4 min-h-[25rem] md:min-h-[10rem] border border-t-0 rounded-b border-slate-200"
+					autoFocus
+					onKeyDown={(e) => {
+						if (e.ctrlKey) {
+							console.log(true);
+						}
+					}}
+				/>
+			</div>
 		</Slate>
 	);
 }
