@@ -14,12 +14,14 @@ import {
 } from "@helpers";
 
 import { ToolbarButton } from "../ToolbarButton";
+import { Select } from "../Select";
+import { FontColor } from "../FontColor";
 
 export function Toolbars() {
-	let editor = useSlate();
+	const editor = useSlate();
 
 	return (
-		<div className="flex border rounded border-slate-600 p-2 gap-2">
+		<div className="flex flex-wrap border border-slate-600 px-4 py-4 gap-4 bg-neutral-100">
 			<div className="flex gap-2">
 				{toggle_menu.map(({ format, title, Icon }) => (
 					<ToolbarButton
@@ -31,25 +33,21 @@ export function Toolbars() {
 						}}
 						title={title}
 					>
-						<Icon size={16} />
+						<Icon />
 					</ToolbarButton>
 				))}
 			</div>
 			<div className="border-r border-slate-300" />
-			<div className="flex gap-2">
-				{heading_menu.map(({ format, title, Icon }) => (
-					<ToolbarButton
-						key={format}
-						active={checkBlock(editor, format)}
-						onClick={(e) => {
-							e.preventDefault();
-							toggleBlock(editor, format);
-						}}
-						title={title}
-					>
-						<Icon size={16} />
-					</ToolbarButton>
+			<Select>
+				{heading_menu.map(({ format, title }) => (
+					<option key={format} value={format}>
+						{title}
+					</option>
 				))}
+			</Select>
+			<div className="border-r border-slate-300" />
+			<div className="flex items-center">
+				<FontColor />
 			</div>
 			<div className="border-r border-slate-300" />
 			<div className="flex gap-2">
@@ -63,7 +61,7 @@ export function Toolbars() {
 						}}
 						title={title}
 					>
-						<Icon size={16} />
+						<Icon />
 					</ToolbarButton>
 				))}
 			</div>
@@ -79,7 +77,7 @@ export function Toolbars() {
 						}}
 						title={title}
 					>
-						<Icon size={16} />
+						<Icon />
 					</ToolbarButton>
 				))}
 			</div>

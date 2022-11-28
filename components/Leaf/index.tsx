@@ -4,6 +4,15 @@ export function Leaf({ attributes, children, leaf }: RenderLeafProps) {
 	const properties = Object.keys(leaf);
 	let child = children;
 
+	let props = {
+		...attributes,
+	} as typeof attributes & { style: { [key: string]: unknown } };
+
+	if (leaf.color) {
+		props.style = {};
+		props.style.color = leaf.color;
+	}
+
 	properties.forEach((key) => {
 		switch (key) {
 			case "bold":
@@ -21,5 +30,5 @@ export function Leaf({ attributes, children, leaf }: RenderLeafProps) {
 		}
 	});
 
-	return <span {...attributes}>{child}</span>;
+	return <span {...props}>{child}</span>;
 }

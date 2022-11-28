@@ -9,7 +9,7 @@ export function checkMark(
 ): boolean {
 	const marks = Editor.marks(editor);
 
-	if (marks) {
+	if (marks && type !== "color") {
 		return marks[type] || false;
 	}
 
@@ -24,6 +24,24 @@ export function toggleMark(
 		editor.removeMark(type);
 	} else {
 		editor.addMark(type, true);
+	}
+}
+
+export function checkColor(editor: Editor): string | false {
+	const marks = Editor.marks(editor);
+
+	if (marks) {
+		return marks.color || false;
+	}
+
+	return false;
+}
+
+export function setColor(editor: Editor, value?: string) {
+	if (value) {
+		editor.addMark("color", value);
+	} else {
+		editor.removeMark("color");
 	}
 }
 

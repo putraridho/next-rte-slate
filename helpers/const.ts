@@ -35,9 +35,9 @@ export const heading_menu: Array<{
 	title: string;
 	Icon: IconType;
 }> = [
-	{ format: "h1", title: "H1", Icon: RiH1 },
-	{ format: "h2", title: "H2", Icon: RiH2 },
-	{ format: "h3", title: "H3", Icon: RiH3 },
+	{ format: "h1", title: "Heading 1", Icon: RiH1 },
+	{ format: "h2", title: "Heading 2", Icon: RiH2 },
+	{ format: "h3", title: "Heading 3", Icon: RiH3 },
 	{ format: "paragraph", title: "Paragraph", Icon: RiParagraph },
 ];
 
