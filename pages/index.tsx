@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { RichTextEditor } from "@components";
 import { serialize } from "@helpers";
+import { Loading } from "@components/Loading";
 
 export default function Home() {
 	const [value, setValue] = useState("");
