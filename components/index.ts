@@ -2,8 +2,6 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { RichTextEditorProps } from "./RichTextEditor";
 
-export * from "./Select";
-
 export const RichTextEditor = dynamic(
 	() => import("./RichTextEditor").then((mod) => mod.RichTextEditor),
 	{

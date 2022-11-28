@@ -14,7 +14,7 @@ import {
 } from "@helpers";
 
 import { ToolbarButton } from "../ToolbarButton";
-import { Select } from "../Select";
+import { HeadingSelect } from "../HeadingSelect";
 import { FontColor } from "../FontColor";
 
 export function Toolbars() {
@@ -38,13 +38,13 @@ export function Toolbars() {
 				))}
 			</div>
 			<div className="border-r border-slate-300" />
-			<Select>
+			<HeadingSelect>
 				{heading_menu.map(({ format, title }) => (
 					<option key={format} value={format}>
 						{title}
 					</option>
 				))}
-			</Select>
+			</HeadingSelect>
 			<div className="border-r border-slate-300" />
 			<div className="flex items-center">
 				<FontColor />

@@ -6,14 +6,12 @@ import { checkBlock, heading_menu, toggleBlock } from "@helpers";
 import { Menu, Transition } from "@headlessui/react";
 import { RiArrowDownSLine } from "react-icons/ri";
 
-interface SelectProps extends HTMLAttributes<HTMLDivElement> {}
+interface HeadingSelectProps extends HTMLAttributes<HTMLDivElement> {}
 
-export function Select({ className, ...props }: SelectProps) {
+export function HeadingSelect({ className, ...props }: HeadingSelectProps) {
 	const editor = useSlate();
 
 	const found = heading_menu.find(({ format }) => checkBlock(editor, format));
-
-	const active = found?.format || "paragraph";
 
 	return (
 		<Menu as="div" className="relative">
