@@ -16,6 +16,7 @@ import {
 import { ToolbarButton } from "../ToolbarButton";
 import { HeadingSelect } from "../HeadingSelect";
 import { FontColor } from "../FontColor";
+import { FontFamily } from "../FontFamily";
 
 export function Toolbars() {
 	const editor = useSlate();
@@ -39,6 +40,8 @@ export function Toolbars() {
 			</div>
 			<div className="border-r border-slate-300" />
 			<HeadingSelect />
+			<div className="border-r border-slate-300" />
+			<FontFamily />
 			<div className="border-r border-slate-300" />
 			<div className="flex items-center">
 				<FontColor />

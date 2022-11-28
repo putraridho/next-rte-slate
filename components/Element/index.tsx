@@ -7,11 +7,33 @@ export function Element({
 }: RenderElementProps): React.ReactElement {
 	let props = {
 		...attributes,
-	} as typeof attributes & { style: { [key: string]: unknown } };
+	} as typeof attributes & { style?: { [key: string]: unknown } };
 
 	if (element.align) {
-		props.style = {};
+		if (!props.style) {
+			props.style = {};
+		}
 		props.style.textAlign = element.align;
+	}
+
+	if (element.fontFamily) {
+		if (!props.style) {
+			props.style = {};
+		}
+
+		switch (element.fontFamily) {
+			case "mono":
+				props.style.fontFamily = "monospace";
+				break;
+			case "serif":
+				props.style.fontFamily = "serif";
+				break;
+			case "sans":
+				props.style.fontFamily = "sans-serif";
+				break;
+			default:
+				props.style.fontFamily = undefined;
+		}
 	}
 
 	switch (element.type) {

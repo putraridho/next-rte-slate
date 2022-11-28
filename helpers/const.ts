@@ -1,14 +1,17 @@
-import { ICustomText, TParagraph, THeading, TAlign, TList } from "@components";
+import {
+	ICustomText,
+	TParagraph,
+	THeading,
+	TAlign,
+	TList,
+	ICustomElement,
+} from "@components";
 import { IconType } from "react-icons";
 import {
 	RiBold,
 	RiItalic,
 	RiUnderline,
 	RiCodeFill,
-	RiH1,
-	RiH2,
-	RiH3,
-	RiParagraph,
 	RiAlignLeft,
 	RiAlignCenter,
 	RiAlignRight,
@@ -37,12 +40,20 @@ export const toggle_menu: Array<{
 export const heading_menu: Array<{
 	format: TParagraph | THeading;
 	title: string;
-	Icon: IconType;
 }> = [
-	{ format: "h1", title: "Heading 1", Icon: RiH1 },
-	{ format: "h2", title: "Heading 2", Icon: RiH2 },
-	{ format: "h3", title: "Heading 3", Icon: RiH3 },
-	{ format: "paragraph", title: "Paragraph", Icon: RiParagraph },
+	{ format: "h1", title: "Heading 1" },
+	{ format: "h2", title: "Heading 2" },
+	{ format: "h3", title: "Heading 3" },
+	{ format: "paragraph", title: "Paragraph" },
+];
+
+export const font_menu: Array<{
+	format: ICustomElement["fontFamily"];
+	title: string;
+}> = [
+	{ format: "sans", title: "Sans serif" },
+	{ format: "serif", title: "Serif" },
+	{ format: "mono", title: "Monospace" },
 ];
 
 export const align_menu: Array<{

@@ -31,12 +31,32 @@ export function serialize(node: Descendant): string {
 
 	const children = node.children.map((n) => serialize(n)).join("");
 
-	const props = {} as { [key: string]: { [key: string]: string } };
+	const props = {} as { [key: string]: { [key: string]: string | undefined } };
 
 	if (node.align) {
-		props.style = {
-			"text-align": node.align,
-		};
+		if (!props.style) {
+			props.style = {};
+		}
+		props.style["text-align"] = node.align;
+	}
+
+	if (node.fontFamily) {
+		if (!props.style) {
+			props.style = {};
+		}
+		switch (node.fontFamily) {
+			case "mono":
+				props.style["font-family"] = "monospace";
+				break;
+			case "serif":
+				props.style["font-family"] = "serif";
+				break;
+			case "sans":
+				props.style["font-family"] = "sans-serif";
+				break;
+			default:
+				props.style["font-family"] = undefined;
+		}
 	}
 
 	const attrs = Object.keys(props)

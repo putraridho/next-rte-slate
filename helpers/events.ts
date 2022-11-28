@@ -2,6 +2,7 @@ import { Editor, Element, Transforms } from "slate";
 
 import { ICustomElement, ICustomText } from "@components";
 import { LIST_ITEMS } from "./const";
+import { TFontFamily } from "@components/type";
 
 export function checkMark(
 	editor: Editor,
@@ -118,6 +119,41 @@ export function toggleAlign(editor: Editor, align: ICustomElement["align"]) {
 
 	newProperties = {
 		align: isActive ? undefined : align,
+	};
+
+	Transforms.setNodes(editor, newProperties);
+}
+
+export function checkFontFamily(
+	editor: Editor,
+	fontFamily: ICustomElement["fontFamily"]
+): boolean {
+	if (editor.selection) {
+		const [match] = Editor.nodes(editor, {
+			at: Editor.unhangRange(editor, editor.selection),
+			match: (n) =>
+				!Editor.isEditor(n) &&
+				Element.isElement(n) &&
+				n.fontFamily === fontFamily,
+		});
+
+		return !!match;
+	}
+	return false;
+}
+
+export function toggleFontFamily(
+	editor: Editor,
+	fontFamily: ICustomElement["fontFamily"]
+) {
+	console.log(fontFamily);
+
+	const isActive = checkFontFamily(editor, fontFamily);
+
+	let newProperties: Partial<Element>;
+
+	newProperties = {
+		fontFamily: isActive ? undefined : fontFamily,
 	};
 
 	Transforms.setNodes(editor, newProperties);
