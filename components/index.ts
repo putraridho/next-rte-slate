@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import React from "react";
+import { RichTextEditorProps } from "./RichTextEditor";
 
 export * from "./Select";
 
@@ -8,7 +9,7 @@ export const RichTextEditor = dynamic(
 	{
 		ssr: false,
 	}
-) as React.FC<{}>;
+) as React.FC<RichTextEditorProps>;
 
 export type {
 	ICustomElement,

@@ -2,6 +2,7 @@ import { Editor, Element, Transforms } from "slate";
 
 import { ICustomElement, ICustomText } from "@components";
 import { LIST_ITEMS } from "./const";
+export * from "./serialize";
 
 export function checkMark(
 	editor: Editor,

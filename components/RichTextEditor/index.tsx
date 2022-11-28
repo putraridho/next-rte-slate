@@ -19,7 +19,13 @@ let initialValue: Descendant[] = [
 	},
 ];
 
-export function RichTextEditor(): React.ReactElement {
+export interface RichTextEditorProps {
+	onChange?: ((value: Descendant[]) => void) | undefined;
+}
+
+export function RichTextEditor({
+	onChange,
+}: RichTextEditorProps): React.ReactElement {
 	const editor = useMemo(() => withReact(createEditor()), []);
 
 	const renderElement = useCallback(
@@ -33,7 +39,7 @@ export function RichTextEditor(): React.ReactElement {
 	);
 
 	return (
-		<Slate editor={editor} value={initialValue}>
+		<Slate editor={editor} value={initialValue} onChange={onChange}>
 			<div className="relative">
 				<Toolbars />
 				<Editable
