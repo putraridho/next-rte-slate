@@ -1,4 +1,5 @@
 import { Toolbars } from "@components/Toolbars";
+import { ctrlShortcut } from "@helpers";
 import React, { useCallback, useMemo } from "react";
 import { createEditor, Descendant } from "slate";
 import {
@@ -49,7 +50,7 @@ export function RichTextEditor({
 					autoFocus
 					onKeyDown={(e) => {
 						if (e.ctrlKey) {
-							console.log(true);
+							ctrlShortcut(editor, e);
 						}
 					}}
 				/>
